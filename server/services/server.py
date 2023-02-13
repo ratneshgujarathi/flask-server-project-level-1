@@ -10,7 +10,7 @@ def create_app():
     app = Flask(__name__, instance_relative_config=True, static_url_path='/static')
 
     # load app config
-    app.config.from_object(load_config(app.env))
+    app.config.from_object(load_config(app.debug))
 
     # JSON encoder
     app.json_encoder = JSONEncoder

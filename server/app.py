@@ -8,7 +8,6 @@ from pathlib import Path
 from server.applications import register_apis
 from server.services.server import create_app
 
-
 BASE_DIR = path.dirname(path.dirname(__file__))
 if BASE_DIR not in sys.path:
     sys.path.append(BASE_DIR)
@@ -26,18 +25,16 @@ def import_parents(level=1):
         print('error')
 
     __package__ = '.'.join(parent.parts[len(top.parts):])
-    print(__package__)
     importlib.import_module(__package__)  # won't be needed after that
 
 
 import_parents()
 
-
 # Create flask App
 app = create_app()
 app.config['SECRET_KEY'] = 'B0KS@PH2OI9'
 
-# register apis - shoul d be the last
+# register apis - should be the last
 register_apis(app)
 
 
