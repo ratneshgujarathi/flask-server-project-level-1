@@ -2,9 +2,8 @@ from flask import Flask, Response
 from flasgger import Swagger
 import json
 from server.config.config import load_config
-from server.swagger.templates import template
 from server.helpers.helper import JSONEncoder
-
+from server.swagger.templates.template import template
 
 def create_app():
     # create flask app

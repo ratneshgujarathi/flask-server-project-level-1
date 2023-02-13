@@ -35,7 +35,7 @@ from server.applications import register_apis
 from server.services.server import create_app
 
 # Create flask App
-app = Flask(__name__)
+app = create_app()
 app.config['SECRET_KEY'] = 'B0KS@PH2OI9'
 
 # register apis - shoul d be the last
@@ -49,9 +49,6 @@ def apply_caching(response):
     response.headers['Access-Control-Allow-Methods'] = 'POST, GET, PUT, DELETE'
     return response
 
-@app.route('/')
-def index():
-    return "HI this is the server"
 
 
 if __name__ == '__main__':

@@ -13,7 +13,7 @@ SERVICES = [
 def register_apis(app):
     try:
         for service in SERVICES:
-            module = importlib.import_module(service['path'], package='..server')
+            module = importlib.import_module(service['path'], package='server')
             app.register_blueprint(getattr(module, service['blueprint']))
         logging.info('Registered all the APIs')
     except Exception as err:

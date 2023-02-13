@@ -54,9 +54,9 @@ class DevelopmentConfig(BaseConfig):
     MONGO_PORT = '9045'
     PYTHON_PATH = 'python'
 
-    APP_PATH = str(pathlib.Path(__file__).parent.parent.absolute())
-    STORAGE_PATH = APP_PATH + '/storage'
-    LOGS_PATH = APP_PATH + '/logs'
+    BASE_PATH = str(pathlib.Path(__file__).parent.parent.absolute())
+    STORAGE_PATH = BASE_PATH + '/storage'
+    LOGS_PATH = BASE_PATH + '/logs'
 
     def __init__(self):
         super(DevelopmentConfig, self).__init__()
