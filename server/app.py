@@ -5,7 +5,8 @@ from os import path
 import os
 import logging
 from pathlib import Path
-
+from server.applications import register_apis
+from server.services.server import create_app
 
 
 BASE_DIR = path.dirname(path.dirname(__file__))
@@ -31,8 +32,6 @@ def import_parents(level=1):
 
 import_parents()
 
-from server.applications import register_apis
-from server.services.server import create_app
 
 # Create flask App
 app = create_app()
@@ -48,7 +47,6 @@ def apply_caching(response):
     response.headers['Access-Control-Allow-Headers'] = 'Origin, X-Requested-With, Content-Type, Accept, Authorization'
     response.headers['Access-Control-Allow-Methods'] = 'POST, GET, PUT, DELETE'
     return response
-
 
 
 if __name__ == '__main__':
