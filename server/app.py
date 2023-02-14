@@ -5,8 +5,9 @@ from os import path
 import os
 import logging
 from pathlib import Path
-from server.applications import register_apis
+from server.services.database import db_init
 from server.services.server import create_app
+import traceback
 
 BASE_DIR = path.dirname(path.dirname(__file__))
 if BASE_DIR not in sys.path:
@@ -22,7 +23,8 @@ def import_parents(level=1):
     try:
         sys.path.remove(str(parent))
     except ValueError:  # already removed
-        print('error')
+        # print(traceback.format_exc())
+        pass
 
     __package__ = '.'.join(parent.parts[len(top.parts):])
     importlib.import_module(__package__)  # won't be needed after that
@@ -33,9 +35,9 @@ import_parents()
 # Create flask App
 app = create_app()
 app.config['SECRET_KEY'] = 'B0KS@PH2OI9'
+db = db_init()
 
-# register apis - should be the last
-register_apis(app)
+from server.applications import register_apis
 
 
 @app.after_request
@@ -45,6 +47,9 @@ def apply_caching(response):
     response.headers['Access-Control-Allow-Methods'] = 'POST, GET, PUT, DELETE'
     return response
 
+
+# register apis - should be the last
+register_apis(app)
 
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port=9046, debug=False, use_reloader=False)

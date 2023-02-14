@@ -1,9 +1,10 @@
 import importlib
 import logging
 
+
 SERVICES = [
     # # auth module
-    # {'path': '.applications.core.api', 'blueprint': 'auth'},
+    {'path': '.applications.core.api', 'blueprint': 'auth'},
 
     # Core module
     {'path': '.applications.core.api.v1', 'blueprint': 'core_v1'}

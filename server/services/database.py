@@ -1,11 +1,9 @@
-
 import logging
 import pymongo
 
 
-
-def db_init(app):
-    client =  pymongo.MongoClient("localhost", 27017)
+def db_init():
+    client = pymongo.MongoClient("localhost", 27017)
     return client.test
 
 
